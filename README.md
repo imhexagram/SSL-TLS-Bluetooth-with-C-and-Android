@@ -8,6 +8,7 @@ https://developer.android.com/develop/connectivity/bluetooth/connect-bluetooth-d
 https://developer.android.com/guide/topics/connectivity/bluetooth?hl=zh-cn#java
 
 https://blog.csdn.net/sevensummer7/article/details/121889347
+https://blog.csdn.net/xanadw/article/details/124382034
 
 https://blog.51cto.com/kenkao/5990078
 
