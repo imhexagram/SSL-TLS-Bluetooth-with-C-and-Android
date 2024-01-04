@@ -20,3 +20,4 @@ SSL/TLS
 https://wiki.openssl.org/index.php/Simple_TLS_Server
 https://stackoverflow.com/questions/7698488/turn-a-simple-socket-into-an-ssl-socket
 https://datatracker.ietf.org/doc/html/rfc5246
+https://developer.android.com/privacy-and-security/security-ssl?hl=zh-cn
