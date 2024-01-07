@@ -16,6 +16,12 @@ bluetooth.c, SecuBluetooth.zip
 
 ------------------------------------------------------------
 
+SSL/TLS Bluetooth Communication between C and Android
+
+ssl_bluetooth.c, TODO-Android part
+
+-----------------------------------------------------------
+
 cmd
 
 openssl genpkey -algorithm RSA -out server_key.key
