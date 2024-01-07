@@ -1,3 +1,11 @@
+cmd
+openssl genpkey -algorithm RSA -out server_key.key
+openssl req -new -key server_key.key -out server_csr.csr
+openssl x509 -req -days 365 -in server_csr.csr -signkey server_key.key -out server_cert.crt
+
+gcc test.c -o test -lbluetooth -lssl -lcrypto
+
+
 Bluetooth
 
 https://github.com/edisonslightbulbs/rfcomm
