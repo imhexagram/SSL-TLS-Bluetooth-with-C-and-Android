@@ -12,7 +12,6 @@
 
 int main() {
     SSL_CTX *ctx;
-    //init ssl
     SSL_library_init();
     OpenSSL_add_all_algorithms();
     SSL_load_error_strings();
@@ -42,26 +41,22 @@ int main() {
     char buffer[BUFFER_SIZE];
     SSL *ssl;
 
-    // 创建服务器端套接字
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket == -1) {
         perror("Error creating server socket");
         exit(EXIT_FAILURE);
     }
 
-    // 设置服务器地址结构
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = INADDR_ANY;
     server_addr.sin_port = htons(PORT);
 
-    // 将套接字绑定到指定端口
     if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
         perror("Error binding socket");
         exit(EXIT_FAILURE);
     }
 
-    // 开始监听连接请求
     if (listen(server_socket, 10) == -1) {
         perror("Error listening for connections");
         exit(EXIT_FAILURE);
@@ -69,7 +64,6 @@ int main() {
 
     printf("Server listening on port %d...\n", PORT);
 
-    // 等待客户端连接
     client_socket = accept(server_socket, (struct sockaddr*)&client_addr, &client_addr_len);
     if (client_socket == -1) {
         perror("Error accepting connection");
@@ -84,22 +78,6 @@ int main() {
     if(SSL_accept(ssl) <= 0){
         ERR_print_errors_fp(stderr);
     }else{
-        /*
-        while(1){
-            memset(buffer, 0, sizeof(buffer));
-            //ssize_t bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
-            int bytes_received = SSL_read(ssl, buffer, sizeof(buffer));
-            if (bytes_received <= 0) {
-                perror("Error receiving data");
-                break;
-            }
-
-            printf("Received from client: %s", buffer);
-
-            // 发送响应给客户端
-            //send(client_socket, buffer, strlen(buffer), 0);
-            SSL_write(ssl, buffer, strlen(buffer));
-        }*/
         //char buffer[1024];
         int bytes;
 
@@ -108,8 +86,6 @@ int main() {
             if (bytes > 0) {
                 buffer[bytes] = '\0';
                 printf("Received: %s", buffer);
-
-                // 发送响应消息
                 const char* response = "Hello, Client! I received your message.";
                 SSL_write(ssl, response, strlen(response));
             }
@@ -118,7 +94,7 @@ int main() {
         SSL_shutdown(ssl);
 
     }
-    // 关闭套接字
+    
     close(client_socket);
     close(server_socket);
     SSL_free(ssl);
