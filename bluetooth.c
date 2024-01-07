@@ -56,11 +56,7 @@ int main() {
         exit(-1);
     }
 
-    // Continue listening for new connections in the main thread
     while (1) {
-        // Your main thread can perform other tasks or simply sleep here
-
-        // Read input from the console and send it to the client
         printf("Enter a message to send to the client: \n");
         fgets(buff, sizeof(buff), stdin);
         write(client, buff, strlen(buff));
@@ -80,10 +76,6 @@ void *handle_client(void *arg) {
         int bytes_read = read(client, buff, sizeof(buff));
         if (bytes_read > 0) {
             printf("Received: [%s]\n", buff);
-
-            // You can add your processing logic here
-
-            // Example: Send a reply to the client
             //const char *response = "Message received!";
             //write(client, response, strlen(response));
         } else {
