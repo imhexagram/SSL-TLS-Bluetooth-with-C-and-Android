@@ -1,40 +1,34 @@
-Simple Exemple Socket Communication with C
+### Simple Exemple Socket Communication with C
 
 socket_client.c, socket_server.c
 
-------------------------------------------------------------
-
-Simple Exemple SSL/TLS Socket Communication with C
+### Simple Exemple SSL/TLS Socket Communication with C
 
 ssl_client.c, ssl_server.c
 
-------------------------------------------------------------
-
-Bluetooth Communication between C server and Android Client
+### Bluetooth Communication between C server and Android Client
 
 bluetooth.c, SecuBluetooth.zip
 
-------------------------------------------------------------
-
-SSL/TLS Bluetooth Communication between C and Android
+### SSL/TLS Bluetooth Communication between C and Android
 
 ssl_bluetooth.c, TODO-Android part
 
------------------------------------------------------------
+### cmd
 
-cmd
+```console
 
-openssl genpkey -algorithm RSA -out server_key.key
+$ openssl genpkey -algorithm RSA -out server_key.key
 
-openssl req -new -key server_key.key -out server_csr.csr
+$ openssl req -new -key server_key.key -out server_csr.csr
 
-openssl x509 -req -days 365 -in server_csr.csr -signkey server_key.key -out server_cert.crt
+$ openssl x509 -req -days 365 -in server_csr.csr -signkey server_key.key -out server_cert.crt
 
-gcc test.c -o test -lbluetooth -lssl -lcrypto
+$ gcc test.c -o test -lbluetooth -lssl -lcrypto
 
------------------------------------------------------------
+```
 
-Reference
+### Reference
 
 Bluetooth
 
