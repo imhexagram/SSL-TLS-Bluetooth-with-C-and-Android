@@ -28,6 +28,24 @@ $ gcc test.c -o test -lbluetooth -lssl -lcrypto
 
 ```
 
+```console
+
+openssl genrsa -des3 -out caroot.key 2048
+openssl req -new -x509 -days 3650 -key caroot.key -out caroot.crt
+openssl x509 -in caroot.crt -text -noout
+openssl genrsa -des3 -out server.key 2048
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -in server.csr -out server.crt -sha1 -CA caroot.crt -CAkey caroot.key -CAcreateserial -days 3650
+openssl x509 -in server.crt -text -noout
+openssl rsa -in server.key -out server.key.insecure
+
+openssl genrsa -des3 -out client.key 2048
+openssl req -new -key client.key -out client.csr
+openssl x509 -req -in client.csr -out client.crt -sha1 -CA caroot.crt -CAkey caroot.key -CAcreateserial -days 3650
+openssl x509 -in client.crt -text -noout
+openssl rsa -in client.key -out client.key.insecure
+```
+
 ### Reference
 
 Bluetooth
