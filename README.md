@@ -44,6 +44,11 @@ openssl req -new -key client.key -out client.csr
 openssl x509 -req -in client.csr -out client.crt -sha1 -CA caroot.crt -CAkey caroot.key -CAcreateserial -days 3650
 openssl x509 -in client.crt -text -noout
 openssl rsa -in client.key -out client.key.insecure
+
+openssl pkcs12 -export  -in client.crt -inkey client.key -out client.p12
+keytool -importkeystore -destkeystore client.jks -srckeystore client.p12  -srcstoretype pkcs12
+openssl pkcs12 -export  -in caroot.crt -inkey caroot.key -out caroot.p12
+keytool -importkeystore -destkeystore caroot.jks -srckeystore caroot.p12  -srcstoretype pkcs12
 ```
 
 ### Reference
