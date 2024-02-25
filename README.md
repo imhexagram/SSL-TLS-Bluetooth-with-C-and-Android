@@ -12,7 +12,7 @@ bluetooth.c, SecuBluetooth.zip
 
 ### SSL/TLS Bluetooth Communication between C and Android
 
-ssl_bluetooth.c, TODO-Android part
+ssl_bluetooth.c, SSLBluetooth.zip (TODO-Android part)
 
 ### cmd
 
